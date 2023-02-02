@@ -210,13 +210,224 @@ void Table::cpuSetValue() {
                 if (random_number % 2 == 0) {
                     random_number += 1;
                 }
-                this->checkTable(random_number);
+                this->cpuPos(random_number);
             }
         }
     }
     // 行動3回目
     else if (count == 3) {
         std::cout << "↓ コンピュータの行動 ↓" << std::endl;
+
+        if (this->checkTable(1) == 3) {
+            if (this->checkTable(2) == 3 && this->checkTable(3) == 1) {
+                this->cpuPos(3);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(3) == 3 && this->checkTable(2) == 1) {
+                this->cpuPos(2);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(4) == 3 && this->checkTable(7) == 1) {
+                this->cpuPos(7);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(5) == 3 && this->checkTable(9) == 1) {
+                this->cpuPos(9);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(7) == 3 && this->checkTable(4) == 1) {
+                this->cpuPos(4);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(9) == 3 && this->checkTable(5) == 1) {
+                this->cpuPos(5);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+        }
+        else if (this->checkTable(2) == 3) {
+            if (this->checkTable(1) == 3 && this->checkTable(3) == 1) {
+                this->cpuPos(3);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(3) == 3 && this->checkTable(1) == 1) {
+                this->cpuPos(1);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(5) == 3 && this->checkTable(8) == 1) {
+                this->cpuPos(8);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(8) == 3 && this->checkTable(5) == 1) {
+                this->cpuPos(5);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+        }
+        else if (this->checkTable(3) == 3) {
+            if (this->checkTable(2) == 3 && this->checkTable(1) == 1) {
+                this->cpuPos(1);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(1) == 3 && this->checkTable(2) == 1) {
+                this->cpuPos(2);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(4) == 3 && this->checkTable(9) == 1) {
+                this->cpuPos(9);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(5) == 3 && this->checkTable(7) == 1) {
+                this->cpuPos(7);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(7) == 3 && this->checkTable(5) == 1) {
+                this->cpuPos(5);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(9) == 3 && this->checkTable(6) == 1) {
+                this->cpuPos(6);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+        }
+        else if (this->checkTable(4) == 3) {
+            if (this->checkTable(1) == 3 && this->checkTable(7) == 1) {
+                this->cpuPos(7);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(5) == 3 && this->checkTable(6) == 1) {
+                this->cpuPos(6);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(6) == 3 && this->checkTable(5) == 1) {
+                this->cpuPos(5);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(7) == 3 && this->checkTable(1) == 1) {
+                this->cpuPos(1);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+        }
+        else if (this->checkTable(5) == 3) {
+            if (this->checkTable(1) == 3 && this->checkTable(9) == 1) {
+                this->cpuPos(9);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(2) == 3 && this->checkTable(8) == 1) {
+                this->cpuPos(8);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(3) == 3 && this->checkTable(7) == 1) {
+                this->cpuPos(7);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(4) == 3 && this->checkTable(6) == 1) {
+                this->cpuPos(6);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(6) == 3 && this->checkTable(4) == 1) {
+                this->cpuPos(4);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(7) == 3 && this->checkTable(3) == 1) {
+                this->cpuPos(3);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(8) == 3 && this->checkTable(2) == 1) {
+                this->cpuPos(2);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(9) == 3 && this->checkTable(1) == 1) {
+                this->cpuPos(1);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+        }
+        else if (this->checkTable(6) == 3) {
+            if (this->checkTable(3) == 3 && this->checkTable(9) == 1) {
+                this->cpuPos(9);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(4) == 3 && this->checkTable(5) == 1) {
+                this->cpuPos(5);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(5) == 3 && this->checkTable(4) == 1) {
+                this->cpuPos(4);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(9) == 3 && this->checkTable(3) == 1) {
+                this->cpuPos(3);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+        }
+        else if (this->checkTable(7) == 3) {
+            if (this->checkTable(1) == 3 && this->checkTable(4) == 1) {
+                this->cpuPos(4);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(3) == 3 && this->checkTable(5) == 1) {
+                this->cpuPos(5);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(4) == 3 && this->checkTable(1) == 1) {
+                this->cpuPos(1);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(5) == 3 && this->checkTable(3) == 1) {
+                this->cpuPos(3);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(8) == 3 && this->checkTable(9) == 1) {
+                this->cpuPos(9);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(9) == 3 && this->checkTable(8) == 1) {
+                this->cpuPos(8);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+        }
+        else if (this->checkTable(8) == 3) {
+            if (this->checkTable(2) == 3 && this->checkTable(5) == 1) {
+                this->cpuPos(5);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(5) == 3 && this->checkTable(2) == 1) {
+                this->cpuPos(2);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(7) == 3 && this->checkTable(9) == 1) {
+                this->cpuPos(9);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(9) == 3 && this->checkTable(7) == 1) {
+                this->cpuPos(7);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+        }
+        else if (this->checkTable(9) == 3) {
+            if (this->checkTable(1) == 3 && this->checkTable(5) == 1) {
+                this->cpuPos(5);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(3) == 3 && this->checkTable(6) == 1) {
+                this->cpuPos(6);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(5) == 3 && this->checkTable(1) == 1) {
+                this->cpuPos(1);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(6) == 3 && this->checkTable(3) == 1) {
+                this->cpuPos(3);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(7) == 3 && this->checkTable(8) == 1) {
+                this->cpuPos(8);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+            else if (this->checkTable(8) == 3 && this->checkTable(7) == 1) {
+                this->cpuPos(7);
+                std::cout << "CPU WIN !!" << std::endl;
+            }
+        }
     }
     count++;
 }
