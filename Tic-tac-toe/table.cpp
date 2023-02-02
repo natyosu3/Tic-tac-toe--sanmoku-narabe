@@ -11,7 +11,7 @@ Reach Table::get_reach() {
     // ‰¡‚Ì2‚Â
     for (int i = 0; i < TABLE_SIZE; i++) {
         for (int j = 0; j < TABLE_SIZE - 1; j++) {
-            if (this->table[i][j] == this->table[i][j + 1]) {
+            if (this->table[i][j] == this->table[i][j + 1] && this->table[i][j] == Elem::O) {
                 return { i, j + 2 };
             }
         }
@@ -19,14 +19,14 @@ Reach Table::get_reach() {
     // c‚Ì2‚Â
     for (int i = 0; i < TABLE_SIZE - 1; i++) {
         for (int j = 0; j < TABLE_SIZE; j++) {
-            if (this->table[i][j] == this->table[i + 1][j]) {
+            if (this->table[i][j] == this->table[i + 1][j] && this->table[i][j] == Elem::O) {
                 return { i + 2, j };
             }
         }
     }
     // Î‚ß‚Ì2‚Â
     for (int i = 0; i < TABLE_SIZE - 1; i++) {
-        if (this->table[i][i] == this->table[i + 1][i + 1]) {
+        if (this->table[i][i] == this->table[i + 1][i + 1] && this->table[i][i] == Elem::O) {
             return { i + 2, i + 2 };
         }
         if (this->table[i][TABLE_SIZE - i - 1] == this->table[i + 1][TABLE_SIZE - i - 2]) {
