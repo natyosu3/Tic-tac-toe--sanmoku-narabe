@@ -1,13 +1,68 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <tuple>
 #include "table.h"
 
-// previous
-// void Table::playerSetValue(int x, int y) {
-// 	this->table[x][y] = Elem::O;
-// 	return;
-// }
+using Reach = std::tuple<int, int>;
+
+
+Reach Table::get_reach() {
+    // 横の2つ
+    for (int i = 0; i < TABLE_SIZE; i++) {
+        for (int j = 0; j < TABLE_SIZE - 1; j++) {
+            if (this->table[i][j] == this->table[i][j + 1]) {
+                return { i, j + 2 };
+            }
+        }
+    }
+    // 縦の2つ
+    for (int i = 0; i < TABLE_SIZE - 1; i++) {
+        for (int j = 0; j < TABLE_SIZE; j++) {
+            if (this->table[i][j] == this->table[i + 1][j]) {
+                return { i + 2, j };
+            }
+        }
+    }
+    // 斜めの2つ
+    for (int i = 0; i < TABLE_SIZE - 1; i++) {
+        if (this->table[i][i] == this->table[i + 1][i + 1]) {
+            return { i + 2, i + 2 };
+        }
+        if (this->table[i][TABLE_SIZE - i - 1] == this->table[i + 1][TABLE_SIZE - i - 2]) {
+            return { i + 2, TABLE_SIZE - i - 2 };
+        }
+    }
+    return { -1, -1 };
+}
+
+
+bool Table::check_two_in_a_row() {
+    // 横の2つ
+    for (int i = 0; i < TABLE_SIZE; i++) {
+        for (int j = 0; j < TABLE_SIZE - 1; j++) {
+            if (this->table[i][j] == this->table[i][j + 1]) {
+                return true;
+            }
+        }
+    }
+    // 縦の2つ
+    for (int i = 0; i < TABLE_SIZE - 1; i++) {
+        for (int j = 0; j < TABLE_SIZE; j++) {
+            if (this->table[i][j] == this->table[i + 1][j]) {
+                return true;
+            }
+        }
+    }
+    // 斜めの2つ
+    for (int i = 0; i < TABLE_SIZE - 1; i++) {
+        if (this->table[i][i] == this->table[i + 1][i + 1] ||
+            this->table[i][TABLE_SIZE - i - 1] == this->table[i + 1][TABLE_SIZE - i - 2]) {
+            return true;
+        }
+    }
+    return false;
+}
 
 void Table::playerPos(int pos) {
     switch (pos) {
@@ -85,6 +140,7 @@ void Table::playerSetValue(int pos) {
 
 void Table::cpuSetValue() {
     static int count = 1;
+    static int move_history1, move_history2;
     int random_number;
 
     srand(time(NULL));
@@ -92,11 +148,13 @@ void Table::cpuSetValue() {
     // 行動1回目-奇数(1, 3, 5, 7, 9)
     if (count == 1) {
         std::cout << "↓ コンピュータの行動 ↓" << std::endl;
-        random_number = rand() % 9 + 1;
+        // random_number = rand() % 9 + 1;
+        random_number = 1;
         if (random_number % 2 == 0) {
             random_number += 1;
         }
         this->cpuPos(random_number);
+        move_history1 = random_number;
     }
     // 行動2回目
     else if (count == 2) {
@@ -104,59 +162,72 @@ void Table::cpuSetValue() {
 
         // Xが1, 3, 7, 9にある時
         if (this->checkTable(1) == 3 || this->checkTable(3) == 3 || this->checkTable(7) == 3 || this->checkTable(9) == 3) {
+            // 5が空の場合
             if (this->checkTable(5) == 1) {
                 if (this->checkTable(1) == 3 && this->checkTable(9) != 2) {
                     random_number = rand() % 2;
                     if (random_number == 0) {
                         this->cpuPos(5);
+                        move_history2 = 5;
                     }
                     else {
                         this->cpuPos(9);
+                        move_history2 = 9;
                     }
                 }
                 else if (this->checkTable(3) == 3 && this->checkTable(7) != 2) {
                     random_number = rand() % 2;
                     if (random_number == 0) {
                         this->cpuPos(5);
+                        move_history2 = 5;
                     }
                     else {
                         this->cpuPos(7);
+                        move_history2 = 7;
                     }
                 }
                 else if (this->checkTable(7) == 3 && this->checkTable(3) != 2) {
                     random_number = rand() % 2;
                     if (random_number == 0) {
                         this->cpuPos(3);
+                        move_history2 = 3;
                     }
                     else {
                         this->cpuPos(5);
+                        move_history2 = 5;
                     }
                 }
                 else if (this->checkTable(9) == 3 && this->checkTable(1) != 2) {
                     random_number = rand() % 2;
                     if (random_number == 0) {
                         this->cpuPos(1);
+                        move_history2 = 1;
                     }
                     else {
                         this->cpuPos(5);
+                        move_history2 = 5;
                     }
                 }
                 else if ((this->checkTable(1) == 3 && this->checkTable(9) == 2) || (this->checkTable(9) == 3 && this->checkTable(1) == 2)) {
                     random_number = rand() % 2;
                     if (random_number == 0) {
                         this->cpuPos(3);
+                        move_history2 = 3;
                     }
                     else {
                         this->cpuPos(7);
+                        move_history2 = 7;
                     }
                 }
                 else if ((this->checkTable(3) == 3 && this->checkTable(7) == 2) || (this->checkTable(7) == 3 && this->checkTable(3) == 2)) {
                     random_number = rand() % 2;
                     if (random_number == 0) {
                         this->cpuPos(1);
+                        move_history2 = 1;
                     }
                     else {
                         this->cpuPos(9);
+                        move_history2 = 9;
                     }
                 }
             }
@@ -166,9 +237,11 @@ void Table::cpuSetValue() {
 
                 if (random_number == 0) {
                     this->cpuPos(3);
+                    move_history2 = 3;
                 }
                 else {
                     this->cpuPos(7);
+                    move_history2 = 7;
                 }
             }
             // 1か9
@@ -177,9 +250,11 @@ void Table::cpuSetValue() {
 
                 if (random_number == 0) {
                     this->cpuPos(1);
+                    move_history2 = 1;
                 }
                 else {
                     this->cpuPos(9);
+                    move_history2 = 9;
                 }
             }
         }
@@ -190,9 +265,11 @@ void Table::cpuSetValue() {
 
                 if (random_number == 0) {
                     this->cpuPos(3);
+                    move_history2 = 3;
                 }
                 else {
                     this->cpuPos(7);
+                    move_history2 = 7;
                 }
             }
             else if (this->checkTable(3) == 2 || this->checkTable(7) == 2) {
@@ -200,9 +277,11 @@ void Table::cpuSetValue() {
 
                 if (random_number == 0) {
                     this->cpuPos(1);
+                    move_history2 = 1;
                 }
                 else {
                     this->cpuPos(9);
+                    move_history2 = 9;
                 }
             }
             else {
@@ -211,6 +290,7 @@ void Table::cpuSetValue() {
                     random_number += 1;
                 }
                 this->cpuPos(random_number);
+                move_history2 = random_number;
             }
         }
     }
@@ -242,6 +322,36 @@ void Table::cpuSetValue() {
             else if (this->checkTable(9) == 3 && this->checkTable(5) == 1) {
                 this->cpuPos(5);
                 std::cout << "CPU WIN !!" << std::endl;
+            }
+            // 最善手以外    未完成
+            else {
+                // 相手リーチがある場合
+                if (this->check_two_in_a_row()) {
+                    std::cout << "a" << std::endl;
+                    Reach reach = this->get_reach();
+                    std::cout << "Reach at (" << std::get<0>(reach) << ", " << std::get<1>(reach) << ")" << std::endl;
+                }
+                else {
+                    std::cout << "aaaa" << std::endl;
+                }
+                
+                if (move_history1 == 1) {
+                    if (move_history2 == 5 || move_history2 == 9) {
+                        random_number = rand() % 2;
+                        if (random_number == 0) {
+                            this->cpuPos(3);
+                        }
+                        else {
+                            this->cpuPos(9);
+                        }
+                    }
+                    else if (move_history2 == 3) {
+                        this->cpuPos(7);
+                    }
+                    else {
+                        this->cpuPos(3);
+                    }
+                }
             }
         }
         else if (this->checkTable(2) == 3) {
