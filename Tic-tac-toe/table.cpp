@@ -92,6 +92,51 @@ void Table::cpuSetValue() {
     this->cpuPos(random_number);
 }
 
+
+int Table::checkTable(int pos) {
+    Elem condition;
+
+    switch (pos) {
+    case 1:
+        condition = this->table[0][0];
+        break;
+    case 2:
+        condition = this->table[0][1];
+        break;
+    case 3:
+        condition = this->table[0][2];
+        break;
+    case 4:
+        condition = this->table[1][0];
+        break;
+    case 5:
+        condition = this->table[0][2];
+        break;
+    case 6:
+        condition = this->table[1][2];
+        break;
+    case 7:
+        condition = this->table[2][0];
+        break;
+    case 8:
+        condition = this->table[2][1];
+        break;
+    case 9:
+        condition = this->table[2][2];
+        break;
+    default:
+        std::cout << "[ERROR] inside of checkTable" << std::endl;
+        break;
+    }
+
+    if (condition == Elem::Empty) {
+        return 1;
+    }
+    else {
+        return -1;
+    }
+}
+
 void Table::printTable() {
     std::cout << "-----------------------------" << std::endl;
     for (int i = 0; i < TABLE_SIZE; ++i) {

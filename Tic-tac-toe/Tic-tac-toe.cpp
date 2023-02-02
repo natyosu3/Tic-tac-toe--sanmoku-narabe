@@ -6,15 +6,27 @@ void horizontal_line() {
 	cout << "-----------------------------" << endl;
 }
 
-int resPlayer() {
+void resPlayer(Table *p) {
 	int pos;
 
-	horizontal_line();
-	cout << "○を打ちたい番号を指定して下さい: ";
-	cin >> pos;
-	horizontal_line();
-	
-	return pos;
+	while (true) {
+		horizontal_line();
+		cout << "○を打ちたい番号を指定して下さい: ";
+		cin >> pos;
+		if (cin.fail()) {
+			cout << "please enter the valid number !" << endl;
+		}
+		else {
+			horizontal_line();
+			if (p->checkTable(pos) == -1) {
+				cout << "既に埋まっています! 入力し直してください。" << endl;
+			}
+			else {
+				p->playerSetValue(pos);
+				break;
+			}
+		}
+	}
 }
 
 int main()
@@ -42,8 +54,9 @@ int main()
 	horizontal_line();
 
 	t.printTable();
-	pos = resPlayer();
-	t.playerSetValue(pos);
+
+	resPlayer(&t);
+
 	t.printTable();
 	t.cpuSetValue();
 	t.printTable();

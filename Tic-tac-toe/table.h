@@ -19,5 +19,6 @@ public:
 	void printTable();
 	void playerSetValue(int);
 	void cpuSetValue();
+	int checkTable(int);
 	Table();
 };
