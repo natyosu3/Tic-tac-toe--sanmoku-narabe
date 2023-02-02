@@ -84,17 +84,147 @@ void Table::playerSetValue(int pos) {
 }
 
 void Table::cpuSetValue() {
+    static int count = 1;
+    int random_number;
+
     srand(time(NULL));
-    int random_number = rand() % 9 + 1;
-    if (random_number % 2 == 0) {
-        random_number += 1;
+    
+    // 行動1回目-奇数(1, 3, 5, 7, 9)
+    if (count == 1) {
+        std::cout << "↓ コンピュータの行動 ↓" << std::endl;
+        random_number = rand() % 9 + 1;
+        if (random_number % 2 == 0) {
+            random_number += 1;
+        }
+        this->cpuPos(random_number);
     }
-    this->cpuPos(random_number);
+    // 行動2回目
+    else if (count == 2) {
+        std::cout << "↓ コンピュータの行動 ↓" << std::endl;
+
+        // Xが1, 3, 7, 9にある時
+        if (this->checkTable(1) == 3 || this->checkTable(3) == 3 || this->checkTable(7) == 3 || this->checkTable(9) == 3) {
+            if (this->checkTable(5) == 1) {
+                if (this->checkTable(1) == 3 && this->checkTable(9) != 2) {
+                    random_number = rand() % 2;
+                    if (random_number == 0) {
+                        this->cpuPos(5);
+                    }
+                    else {
+                        this->cpuPos(9);
+                    }
+                }
+                else if (this->checkTable(3) == 3 && this->checkTable(7) != 2) {
+                    random_number = rand() % 2;
+                    if (random_number == 0) {
+                        this->cpuPos(5);
+                    }
+                    else {
+                        this->cpuPos(7);
+                    }
+                }
+                else if (this->checkTable(7) == 3 && this->checkTable(3) != 2) {
+                    random_number = rand() % 2;
+                    if (random_number == 0) {
+                        this->cpuPos(3);
+                    }
+                    else {
+                        this->cpuPos(5);
+                    }
+                }
+                else if (this->checkTable(9) == 3 && this->checkTable(1) != 2) {
+                    random_number = rand() % 2;
+                    if (random_number == 0) {
+                        this->cpuPos(1);
+                    }
+                    else {
+                        this->cpuPos(5);
+                    }
+                }
+                else if ((this->checkTable(1) == 3 && this->checkTable(9) == 2) || (this->checkTable(9) == 3 && this->checkTable(1) == 2)) {
+                    random_number = rand() % 2;
+                    if (random_number == 0) {
+                        this->cpuPos(3);
+                    }
+                    else {
+                        this->cpuPos(7);
+                    }
+                }
+                else if ((this->checkTable(3) == 3 && this->checkTable(7) == 2) || (this->checkTable(7) == 3 && this->checkTable(3) == 2)) {
+                    random_number = rand() % 2;
+                    if (random_number == 0) {
+                        this->cpuPos(1);
+                    }
+                    else {
+                        this->cpuPos(9);
+                    }
+                }
+            }
+            // 3か7
+            else if (this->checkTable(1) == 3 || this->checkTable(9) == 3) {
+                random_number = rand() % 2;
+
+                if (random_number == 0) {
+                    this->cpuPos(3);
+                }
+                else {
+                    this->cpuPos(7);
+                }
+            }
+            // 1か9
+            else if (this->checkTable(3) == 3 || this->checkTable(7) == 3) {
+                random_number = rand() % 2;
+
+                if (random_number == 0) {
+                    this->cpuPos(1);
+                }
+                else {
+                    this->cpuPos(9);
+                }
+            }
+        }
+        // Xが5にある時
+        else {
+            if (this->checkTable(1) == 2 || this->checkTable(9) == 2) {
+                random_number = rand() % 2;
+
+                if (random_number == 0) {
+                    this->cpuPos(3);
+                }
+                else {
+                    this->cpuPos(7);
+                }
+            }
+            else if (this->checkTable(3) == 2 || this->checkTable(7) == 2) {
+                random_number = rand() % 2;
+
+                if (random_number == 0) {
+                    this->cpuPos(1);
+                }
+                else {
+                    this->cpuPos(9);
+                }
+            }
+            else {
+                random_number = rand() % 9 + 1;
+                if (random_number % 2 == 0) {
+                    random_number += 1;
+                }
+                this->checkTable(random_number);
+            }
+        }
+    }
+    // 行動3回目
+    else if (count == 3) {
+        std::cout << "↓ コンピュータの行動 ↓" << std::endl;
+    }
+    count++;
 }
 
 
 int Table::checkTable(int pos) {
-    Elem condition;
+    // 適当に初期化
+    Elem condition = Elem::X;
 
     switch (pos) {
     case 1:
@@ -110,7 +240,7 @@ int Table::checkTable(int pos) {
         condition = this->table[1][0];
         break;
     case 5:
-        condition = this->table[0][2];
+        condition = this->table[1][1];
         break;
     case 6:
         condition = this->table[1][2];
@@ -132,6 +262,12 @@ int Table::checkTable(int pos) {
     if (condition == Elem::Empty) {
         return 1;
     }
+    else if (condition == Elem::O) {
+        return 2;
+    }
+    else if (condition == Elem::X) {
+        return 3;
+    }
     else {
         return -1;
     }
@@ -143,13 +279,13 @@ void Table::printTable() {
         for (int j = 0; j < TABLE_SIZE; ++j) {
             switch (table[i][j]) {
             case Elem::Empty:
-                std::cout << '.';
+                std::cout << '.' << ' ';
                 break;
             case Elem::X:
-                std::cout << 'X';
+                std::cout << 'X' << ' ';
                 break;
             case Elem::O:
-                std::cout << 'O';
+                std::cout << 'O' << ' ';
                 break;
             }
         }
