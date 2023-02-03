@@ -37,6 +37,36 @@ Reach Table::get_reach() {
 }
 
 
+int swith_table(int x, int y) {
+    if (x == 0 && y == 0) {
+        return 1;
+    }
+    else if (x == 0 && y == 1) {
+        return 2;
+    }
+    else if (x == 0 && y == 2) {
+        return 3;
+    }
+    else if (x == 1 && y == 0) {
+        return 4;
+    }
+    else if (x == 1 && y == 1) {
+        return 5;
+    }
+    else if (x == 1 && y == 2) {
+        return 6;
+    }
+    else if (x == 2 && y == 0) {
+        return 7;
+    }
+    else if (x == 2 && y == 1) {
+        return 8;
+    }
+    else if (x == 2 && y == 2) {
+        return 9;
+    }
+}
+
 bool Table::check_two_in_a_row() {
     // ‰¡‚Ì2‚Â
     for (int i = 0; i < TABLE_SIZE; i++) {
@@ -327,30 +357,21 @@ void Table::cpuSetValue() {
             else {
                 // ‘ŠŽèƒŠ[ƒ`‚ª‚ ‚éê‡
                 if (this->check_two_in_a_row()) {
-                    std::cout << "a" << std::endl;
                     Reach reach = this->get_reach();
-                    std::cout << "Reach at (" << std::get<0>(reach) << ", " << std::get<1>(reach) << ")" << std::endl;
+                    if (std::get<0>(reach) == -1) {
+                        for (int i = 1; i < 10; i++) {
+                            if (this->checkTable(i) == 1) {
+                                this->cpuPos(i);
+                            }
+                        }
+                    }
+                    else {
+                        std::cout << "Reach at (" << std::get<0>(reach) << ", " << std::get<1>(reach) << ")" << std::endl;
+                        this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+                    }
                 }
                 else {
                     std::cout << "aaaa" << std::endl;
-                }
-                
-                if (move_history1 == 1) {
-                    if (move_history2 == 5 || move_history2 == 9) {
-                        random_number = rand() % 2;
-                        if (random_number == 0) {
-                            this->cpuPos(3);
-                        }
-                        else {
-                            this->cpuPos(9);
-                        }
-                    }
-                    else if (move_history2 == 3) {
-                        this->cpuPos(7);
-                    }
-                    else {
-                        this->cpuPos(3);
-                    }
                 }
             }
         }

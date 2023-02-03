@@ -55,19 +55,11 @@ int main()
 	horizontal_line();
 
 	cout << "↓ 初期状態 ↓" << endl;
-	t.printTable();
-	t.cpuSetValue();
-	t.printTable();
-	resPlayer(&t);
-	t.printTable();
-	t.cpuSetValue();
-	t.printTable();
-	resPlayer(&t);
-	t.printTable();
-	t.cpuSetValue();
-	t.printTable();
-
-
-
+	while (true) {
+		t.printTable();
+		t.cpuSetValue();
+		t.printTable();
+		resPlayer(&t);
+	}
 	return 0;
 }
