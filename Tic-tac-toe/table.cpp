@@ -15,10 +15,10 @@ Reach Table::get_reach(int select) {
                 return { 2, i };
             }
             if (this->table[0][i] == Elem::O && this->table[1][i] == Elem::Empty && this->table[2][i] == Elem::O) {
-                return { 2, i };
+                return { 1, i };
             }
             if (this->table[0][i] == Elem::Empty && this->table[1][i] == Elem::O && this->table[2][i] == Elem::O) {
-                return { 2, i };
+                return { 0, i };
             }
         }
         // 縦の2つ
@@ -63,10 +63,10 @@ Reach Table::get_reach(int select) {
                 return { 2, i };
             }
             if (this->table[0][i] == Elem::X && this->table[1][i] == Elem::Empty && this->table[2][i] == Elem::X) {
-                return { 2, i };
+                return { 1, i };
             }
             if (this->table[0][i] == Elem::Empty && this->table[1][i] == Elem::X && this->table[2][i] == Elem::X) {
-                return { 2, i };
+                return { 0, i };
             }
         }
         // 縦の2つ
@@ -400,34 +400,12 @@ void Table::cpuSetValue() {
         std::cout << "↓ コンピュータの行動 ↓" << std::endl;
 
         if (this->checkTable(1) == 3) {
-            if (this->checkTable(2) == 3 && this->checkTable(3) == 1) {
-                this->cpuPos(3);
-                std::cout << "CPU WIN !!" << std::endl;
+            Reach reach = this->get_reach(2);
+            if (std::get<0>(reach) != -1) {
+                this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
             }
-            else if (this->checkTable(3) == 3 && this->checkTable(2) == 1) {
-                this->cpuPos(2);
-                std::cout << "CPU WIN !!" << std::endl;
-            }
-            else if (this->checkTable(4) == 3 && this->checkTable(7) == 1) {
-                this->cpuPos(7);
-                std::cout << "CPU WIN !!" << std::endl;
-            }
-            else if (this->checkTable(5) == 3 && this->checkTable(9) == 1) {
-                this->cpuPos(9);
-                std::cout << "CPU WIN !!" << std::endl;
-            }
-            else if (this->checkTable(7) == 3 && this->checkTable(4) == 1) {
-                this->cpuPos(4);
-                std::cout << "CPU WIN !!" << std::endl;
-            }
-            else if (this->checkTable(9) == 3 && this->checkTable(5) == 1) {
-                this->cpuPos(5);
-                std::cout << "CPU WIN !!" << std::endl;
-            }
-            // 最善手以外    未完成
             else {
-                // 相手リーチがある場合
-                
+                // 相手リーチがある場合                
                 Reach reach = this->get_reach(1);
                 if (std::get<0>(reach) == -1) {
                     for (int i = 1; i < 10; i++) {
