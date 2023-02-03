@@ -588,6 +588,392 @@ void Table::cpuSetValue() {
             }
         }
     }
+    else if (count == 4) {
+        std::cout << "↓ コンピュータの行動 ↓" << std::endl;
+
+        if (this->checkTable(1) == 3) {
+            Reach reach = this->get_reach(2);
+            if (std::get<0>(reach) != -1) {
+                this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+            }
+            else {
+                // 相手リーチがある場合                
+                Reach reach = this->get_reach(1);
+                if (std::get<0>(reach) != -1) {
+                    this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+                }
+                else {
+                    for (int i = 1; i < 10; i++) {
+                        if (this->checkTable(i) == 1) {
+                            this->cpuPos(i);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else if (this->checkTable(2) == 3) {
+            Reach reach = this->get_reach(2);
+            if (std::get<0>(reach) != -1) {
+                this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+            }
+            else {
+                // 相手リーチがある場合                
+                Reach reach = this->get_reach(1);
+                if (std::get<0>(reach) != -1) {
+                    this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+                }
+                else {
+                    for (int i = 1; i < 10; i++) {
+                        if (this->checkTable(i) == 1) {
+                            this->cpuPos(i);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else if (this->checkTable(3) == 3) {
+            Reach reach = this->get_reach(2);
+            if (std::get<0>(reach) != -1) {
+                this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+            }
+            else {
+                // 相手リーチがある場合                
+                Reach reach = this->get_reach(1);
+                if (std::get<0>(reach) != -1) {
+                    this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+                }
+                else {
+                    for (int i = 1; i < 10; i++) {
+                        if (this->checkTable(i) == 1) {
+                            this->cpuPos(i);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else if (this->checkTable(4) == 3) {
+            Reach reach = this->get_reach(2);
+            if (std::get<0>(reach) != -1) {
+                this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+            }
+            else {
+                // 相手リーチがある場合                
+                Reach reach = this->get_reach(1);
+                if (std::get<0>(reach) != -1) {
+                    this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+                }
+                else {
+                    for (int i = 1; i < 10; i++) {
+                        if (this->checkTable(i) == 1) {
+                            this->cpuPos(i);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else if (this->checkTable(5) == 3) {
+            Reach reach = this->get_reach(2);
+            if (std::get<0>(reach) != -1) {
+                this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+            }
+            else {
+                // 相手リーチがある場合                
+                Reach reach = this->get_reach(1);
+                if (std::get<0>(reach) != -1) {
+                    this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+                }
+                else {
+                    for (int i = 1; i < 10; i++) {
+                        if (this->checkTable(i) == 1) {
+                            this->cpuPos(i);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else if (this->checkTable(6) == 3) {
+            Reach reach = this->get_reach(2);
+            if (std::get<0>(reach) != -1) {
+                this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+            }
+            else {
+                // 相手リーチがある場合                
+                Reach reach = this->get_reach(1);
+                if (std::get<0>(reach) != -1) {
+                    this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+                }
+                else {
+                    for (int i = 1; i < 10; i++) {
+                        if (this->checkTable(i) == 1) {
+                            this->cpuPos(i);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else if (this->checkTable(7) == 3) {
+            Reach reach = this->get_reach(2);
+            if (std::get<0>(reach) != -1) {
+                this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+            }
+            else {
+                // 相手リーチがある場合                
+                Reach reach = this->get_reach(1);
+                if (std::get<0>(reach) != -1) {
+                    this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+                }
+                else {
+                    for (int i = 1; i < 10; i++) {
+                        if (this->checkTable(i) == 1) {
+                            this->cpuPos(i);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else if (this->checkTable(8) == 3) {
+            Reach reach = this->get_reach(2);
+            if (std::get<0>(reach) != -1) {
+                this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+            }
+            else {
+                // 相手リーチがある場合                
+                Reach reach = this->get_reach(1);
+                if (std::get<0>(reach) != -1) {
+                    this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+                }
+                else {
+                    for (int i = 1; i < 10; i++) {
+                        if (this->checkTable(i) == 1) {
+                            this->cpuPos(i);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else if (this->checkTable(9) == 3) {
+            Reach reach = this->get_reach(2);
+            if (std::get<0>(reach) != -1) {
+                this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+            }
+            else {
+                // 相手リーチがある場合                
+                Reach reach = this->get_reach(1);
+                if (std::get<0>(reach) != -1) {
+                    this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+                }
+                else {
+                    for (int i = 1; i < 10; i++) {
+                        if (this->checkTable(i) == 1) {
+                            this->cpuPos(i);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else if (count == 5) {
+        std::cout << "↓ コンピュータの行動 ↓" << std::endl;
+
+        if (this->checkTable(1) == 3) {
+            Reach reach = this->get_reach(2);
+            if (std::get<0>(reach) != -1) {
+                this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+            }
+            else {
+                // 相手リーチがある場合                
+                Reach reach = this->get_reach(1);
+                if (std::get<0>(reach) != -1) {
+                    this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+                }
+                else {
+                    for (int i = 1; i < 10; i++) {
+                        if (this->checkTable(i) == 1) {
+                            this->cpuPos(i);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else if (this->checkTable(2) == 3) {
+            Reach reach = this->get_reach(2);
+            if (std::get<0>(reach) != -1) {
+                this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+            }
+            else {
+                // 相手リーチがある場合                
+                Reach reach = this->get_reach(1);
+                if (std::get<0>(reach) != -1) {
+                    this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+                }
+                else {
+                    for (int i = 1; i < 10; i++) {
+                        if (this->checkTable(i) == 1) {
+                            this->cpuPos(i);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else if (this->checkTable(3) == 3) {
+            Reach reach = this->get_reach(2);
+            if (std::get<0>(reach) != -1) {
+                this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+            }
+            else {
+                // 相手リーチがある場合                
+                Reach reach = this->get_reach(1);
+                if (std::get<0>(reach) != -1) {
+                    this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+                }
+                else {
+                    for (int i = 1; i < 10; i++) {
+                        if (this->checkTable(i) == 1) {
+                            this->cpuPos(i);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else if (this->checkTable(4) == 3) {
+            Reach reach = this->get_reach(2);
+            if (std::get<0>(reach) != -1) {
+                this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+            }
+            else {
+                // 相手リーチがある場合                
+                Reach reach = this->get_reach(1);
+                if (std::get<0>(reach) != -1) {
+                    this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+                }
+                else {
+                    for (int i = 1; i < 10; i++) {
+                        if (this->checkTable(i) == 1) {
+                            this->cpuPos(i);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else if (this->checkTable(5) == 3) {
+            Reach reach = this->get_reach(2);
+            if (std::get<0>(reach) != -1) {
+                this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+            }
+            else {
+                // 相手リーチがある場合                
+                Reach reach = this->get_reach(1);
+                if (std::get<0>(reach) != -1) {
+                    this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+                }
+                else {
+                    for (int i = 1; i < 10; i++) {
+                        if (this->checkTable(i) == 1) {
+                            this->cpuPos(i);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else if (this->checkTable(6) == 3) {
+            Reach reach = this->get_reach(2);
+            if (std::get<0>(reach) != -1) {
+                this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+            }
+            else {
+                // 相手リーチがある場合                
+                Reach reach = this->get_reach(1);
+                if (std::get<0>(reach) != -1) {
+                    this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+                }
+                else {
+                    for (int i = 1; i < 10; i++) {
+                        if (this->checkTable(i) == 1) {
+                            this->cpuPos(i);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else if (this->checkTable(7) == 3) {
+            Reach reach = this->get_reach(2);
+            if (std::get<0>(reach) != -1) {
+                this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+            }
+            else {
+                // 相手リーチがある場合                
+                Reach reach = this->get_reach(1);
+                if (std::get<0>(reach) != -1) {
+                    this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+                }
+                else {
+                    for (int i = 1; i < 10; i++) {
+                        if (this->checkTable(i) == 1) {
+                            this->cpuPos(i);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else if (this->checkTable(8) == 3) {
+            Reach reach = this->get_reach(2);
+            if (std::get<0>(reach) != -1) {
+                this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+            }
+            else {
+                // 相手リーチがある場合                
+                Reach reach = this->get_reach(1);
+                if (std::get<0>(reach) != -1) {
+                    this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+                }
+                else {
+                    for (int i = 1; i < 10; i++) {
+                        if (this->checkTable(i) == 1) {
+                            this->cpuPos(i);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else if (this->checkTable(9) == 3) {
+            Reach reach = this->get_reach(2);
+            if (std::get<0>(reach) != -1) {
+                this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+            }
+            else {
+                // 相手リーチがある場合                
+                Reach reach = this->get_reach(1);
+                if (std::get<0>(reach) != -1) {
+                    this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+                }
+                else {
+                    for (int i = 1; i < 10; i++) {
+                        if (this->checkTable(i) == 1) {
+                            this->cpuPos(i);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
     count++;
 }
 
