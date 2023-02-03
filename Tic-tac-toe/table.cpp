@@ -29,8 +29,8 @@ Reach Table::get_reach() {
         if (this->table[i][i] == this->table[i + 1][i + 1] && this->table[i][i] == Elem::O) {
             return { i + 2, i + 2 };
         }
-        if (this->table[i][TABLE_SIZE - i - 1] == this->table[i + 1][TABLE_SIZE - i - 2]) {
-            return { i + 2, TABLE_SIZE - i - 2 };
+        if ((this->table[i][TABLE_SIZE - i - 1] == this->table[i + 1][TABLE_SIZE - i - 2]) && (this->table[i][TABLE_SIZE - i - 1] == Elem::O)) {
+            return { i + 2, TABLE_SIZE - i - 3 };
         }
     }
     return { -1, -1 };
@@ -362,16 +362,25 @@ void Table::cpuSetValue() {
                         for (int i = 1; i < 10; i++) {
                             if (this->checkTable(i) == 1) {
                                 this->cpuPos(i);
+                                break;
                             }
                         }
                     }
                     else {
-                        std::cout << "Reach at (" << std::get<0>(reach) << ", " << std::get<1>(reach) << ")" << std::endl;
+                        std::cout << std::get<0>(reach) << "," << std::get<1>(reach) << std::endl;
+                        std::cout << swith_table(std::get<0>(reach), std::get<1>(reach)) << std::endl;
                         this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
                     }
                 }
+                // 相手リーチがない場合->自身のダブルリーチを作る
                 else {
-                    std::cout << "aaaa" << std::endl;
+                    //if (this->checkTable())
+                    for (int i = 1; i < 10; i++) {
+                        if (this->checkTable(i) == 1) {
+                            this->cpuPos(i);
+                            break;
+                        }
+                    }
                 }
             }
         }
