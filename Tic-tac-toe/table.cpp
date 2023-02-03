@@ -10,27 +10,47 @@ using Reach = std::tuple<int, int>;
 Reach Table::get_reach() {
     // 横の2つ
     for (int i = 0; i < TABLE_SIZE; i++) {
-        for (int j = 0; j < TABLE_SIZE - 1; j++) {
-            if (this->table[i][j] == this->table[i][j + 1] && this->table[i][j] == Elem::O) {
-                return { i, j + 2 };
-            }
+        if (this->table[0][i] == Elem::O && this->table[1][i] == Elem::O && this->table[2][i] == Elem::Empty) {
+            return { 2, i };
+        }
+        if (this->table[0][i] == Elem::O && this->table[1][i] == Elem::Empty && this->table[2][i] == Elem::O) {
+            return { 2, i };
+        }
+        if (this->table[0][i] == Elem::Empty && this->table[1][i] == Elem::O && this->table[2][i] == Elem::O) {
+            return { 2, i };
         }
     }
     // 縦の2つ
-    for (int i = 0; i < TABLE_SIZE - 1; i++) {
-        for (int j = 0; j < TABLE_SIZE; j++) {
-            if (this->table[i][j] == this->table[i + 1][j] && this->table[i][j] == Elem::O) {
-                return { i + 2, j };
-            }
+    for (int i = 0; i < TABLE_SIZE; i++) {
+        if (this->table[i][0] == Elem::O && this->table[i][1] == Elem::O && this->table[i][2] == Elem::Empty) {
+            return { i, 2 };
+        }
+        if (this->table[i][0] == Elem::O && this->table[i][1] == Elem::Empty && this->table[i][2] == Elem::O) {
+            return { i, 1 };
+        }
+        if (this->table[i][0] == Elem::Empty && this->table[i][1] == Elem::O && this->table[i][2] == Elem::O) {
+            return { i, 0 };
         }
     }
     // 斜めの2つ
     for (int i = 0; i < TABLE_SIZE - 1; i++) {
-        if (this->table[i][i] == this->table[i + 1][i + 1] && this->table[i][i] == Elem::O) {
-            return { i + 2, i + 2 };
+        if (this->table[0][0] == Elem::O && this->table[1][1] == Elem::O && this->table[2][2] == Elem::Empty) {
+            return { 2, 2 };
         }
-        if ((this->table[i][TABLE_SIZE - i - 1] == this->table[i + 1][TABLE_SIZE - i - 2]) && (this->table[i][TABLE_SIZE - i - 1] == Elem::O)) {
-            return { i + 2, TABLE_SIZE - i - 3 };
+        if (this->table[0][0] == Elem::O && this->table[1][1] == Elem::Empty && this->table[2][2] == Elem::O) {
+            return { 1, 1 };
+        }
+        if (this->table[0][0] == Elem::Empty && this->table[1][1] == Elem::O && this->table[2][2] == Elem::O) {
+            return { 0, 0 };
+        }
+        if (this->table[0][2] == Elem::O && this->table[1][1] == Elem::O && this->table[2][0] == Elem::Empty) {
+            return { 2, 0 };
+        }
+        if (this->table[0][2] == Elem::O && this->table[1][1] == Elem::Empty && this->table[2][0] == Elem::O) {
+            return { 1, 1 };
+        }
+        if (this->table[0][2] == Elem::Empty && this->table[1][1] == Elem::O && this->table[2][0] == Elem::O) {
+            return { 0, 2 };
         }
     }
     return { -1, -1 };
@@ -356,31 +376,20 @@ void Table::cpuSetValue() {
             // 最善手以外    未完成
             else {
                 // 相手リーチがある場合
-                if (this->check_two_in_a_row()) {
-                    Reach reach = this->get_reach();
-                    if (std::get<0>(reach) == -1) {
-                        for (int i = 1; i < 10; i++) {
-                            if (this->checkTable(i) == 1) {
-                                this->cpuPos(i);
-                                break;
-                            }
-                        }
-                    }
-                    else {
-                        std::cout << std::get<0>(reach) << "," << std::get<1>(reach) << std::endl;
-                        std::cout << swith_table(std::get<0>(reach), std::get<1>(reach)) << std::endl;
-                        this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
-                    }
-                }
-                // 相手リーチがない場合->自身のダブルリーチを作る
-                else {
-                    //if (this->checkTable())
+                
+                Reach reach = this->get_reach();
+                if (std::get<0>(reach) == -1) {
                     for (int i = 1; i < 10; i++) {
                         if (this->checkTable(i) == 1) {
                             this->cpuPos(i);
                             break;
                         }
                     }
+                }
+                else {
+                    std::cout << std::get<0>(reach) << "," << std::get<1>(reach) << std::endl;
+                    std::cout << swith_table(std::get<0>(reach), std::get<1>(reach)) << std::endl;
+                    this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
                 }
             }
         }
