@@ -23,6 +23,6 @@ public:
 	void cpuSetValue();
 	int checkTable(int);
 	bool check_two_in_a_row();
-	Reach get_reach();
+	Reach get_reach(int);
 	Table();
 };

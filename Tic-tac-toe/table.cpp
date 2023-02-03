@@ -7,53 +7,104 @@
 using Reach = std::tuple<int, int>;
 
 
-Reach Table::get_reach() {
-    // ‰¡‚Ì2‚Â
-    for (int i = 0; i < TABLE_SIZE; i++) {
-        if (this->table[0][i] == Elem::O && this->table[1][i] == Elem::O && this->table[2][i] == Elem::Empty) {
-            return { 2, i };
+Reach Table::get_reach(int select) {
+    if (select == 1) {
+        // ‰¡‚Ì2‚Â
+        for (int i = 0; i < TABLE_SIZE; i++) {
+            if (this->table[0][i] == Elem::O && this->table[1][i] == Elem::O && this->table[2][i] == Elem::Empty) {
+                return { 2, i };
+            }
+            if (this->table[0][i] == Elem::O && this->table[1][i] == Elem::Empty && this->table[2][i] == Elem::O) {
+                return { 2, i };
+            }
+            if (this->table[0][i] == Elem::Empty && this->table[1][i] == Elem::O && this->table[2][i] == Elem::O) {
+                return { 2, i };
+            }
         }
-        if (this->table[0][i] == Elem::O && this->table[1][i] == Elem::Empty && this->table[2][i] == Elem::O) {
-            return { 2, i };
+        // c‚Ì2‚Â
+        for (int i = 0; i < TABLE_SIZE; i++) {
+            if (this->table[i][0] == Elem::O && this->table[i][1] == Elem::O && this->table[i][2] == Elem::Empty) {
+                return { i, 2 };
+            }
+            if (this->table[i][0] == Elem::O && this->table[i][1] == Elem::Empty && this->table[i][2] == Elem::O) {
+                return { i, 1 };
+            }
+            if (this->table[i][0] == Elem::Empty && this->table[i][1] == Elem::O && this->table[i][2] == Elem::O) {
+                return { i, 0 };
+            }
         }
-        if (this->table[0][i] == Elem::Empty && this->table[1][i] == Elem::O && this->table[2][i] == Elem::O) {
-            return { 2, i };
+        // Î‚ß‚Ì2‚Â
+        for (int i = 0; i < TABLE_SIZE - 1; i++) {
+            if (this->table[0][0] == Elem::O && this->table[1][1] == Elem::O && this->table[2][2] == Elem::Empty) {
+                return { 2, 2 };
+            }
+            if (this->table[0][0] == Elem::O && this->table[1][1] == Elem::Empty && this->table[2][2] == Elem::O) {
+                return { 1, 1 };
+            }
+            if (this->table[0][0] == Elem::Empty && this->table[1][1] == Elem::O && this->table[2][2] == Elem::O) {
+                return { 0, 0 };
+            }
+            if (this->table[0][2] == Elem::O && this->table[1][1] == Elem::O && this->table[2][0] == Elem::Empty) {
+                return { 2, 0 };
+            }
+            if (this->table[0][2] == Elem::O && this->table[1][1] == Elem::Empty && this->table[2][0] == Elem::O) {
+                return { 1, 1 };
+            }
+            if (this->table[0][2] == Elem::Empty && this->table[1][1] == Elem::O && this->table[2][0] == Elem::O) {
+                return { 0, 2 };
+            }
         }
+        return { -1, -1 };
     }
-    // c‚Ì2‚Â
-    for (int i = 0; i < TABLE_SIZE; i++) {
-        if (this->table[i][0] == Elem::O && this->table[i][1] == Elem::O && this->table[i][2] == Elem::Empty) {
-            return { i, 2 };
+    else {
+        // ‰¡‚Ì2‚Â
+        for (int i = 0; i < TABLE_SIZE; i++) {
+            if (this->table[0][i] == Elem::X && this->table[1][i] == Elem::X && this->table[2][i] == Elem::Empty) {
+                return { 2, i };
+            }
+            if (this->table[0][i] == Elem::X && this->table[1][i] == Elem::Empty && this->table[2][i] == Elem::X) {
+                return { 2, i };
+            }
+            if (this->table[0][i] == Elem::Empty && this->table[1][i] == Elem::X && this->table[2][i] == Elem::X) {
+                return { 2, i };
+            }
         }
-        if (this->table[i][0] == Elem::O && this->table[i][1] == Elem::Empty && this->table[i][2] == Elem::O) {
-            return { i, 1 };
+        // c‚Ì2‚Â
+        for (int i = 0; i < TABLE_SIZE; i++) {
+            if (this->table[i][0] == Elem::X && this->table[i][1] == Elem::X && this->table[i][2] == Elem::Empty) {
+                return { i, 2 };
+            }
+            if (this->table[i][0] == Elem::X && this->table[i][1] == Elem::Empty && this->table[i][2] == Elem::X) {
+                return { i, 1 };
+            }
+            if (this->table[i][0] == Elem::Empty && this->table[i][1] == Elem::X && this->table[i][2] == Elem::X) {
+                return { i, 0 };
+            }
         }
-        if (this->table[i][0] == Elem::Empty && this->table[i][1] == Elem::O && this->table[i][2] == Elem::O) {
-            return { i, 0 };
+        // Î‚ß‚Ì2‚Â
+        for (int i = 0; i < TABLE_SIZE - 1; i++) {
+            if (this->table[0][0] == Elem::X && this->table[1][1] == Elem::X && this->table[2][2] == Elem::Empty) {
+                return { 2, 2 };
+            }
+            if (this->table[0][0] == Elem::X && this->table[1][1] == Elem::Empty && this->table[2][2] == Elem::X) {
+                return { 1, 1 };
+            }
+            if (this->table[0][0] == Elem::Empty && this->table[1][1] == Elem::X && this->table[2][2] == Elem::X) {
+                return { 0, 0 };
+            }
+            if (this->table[0][2] == Elem::X && this->table[1][1] == Elem::X && this->table[2][0] == Elem::Empty) {
+                return { 2, 0 };
+            }
+            if (this->table[0][2] == Elem::X && this->table[1][1] == Elem::Empty && this->table[2][0] == Elem::X) {
+                return { 1, 1 };
+            }
+            if (this->table[0][2] == Elem::Empty && this->table[1][1] == Elem::X && this->table[2][0] == Elem::X) {
+                return { 0, 2 };
+            }
         }
+        return { -1, -1 };
     }
-    // Î‚ß‚Ì2‚Â
-    for (int i = 0; i < TABLE_SIZE - 1; i++) {
-        if (this->table[0][0] == Elem::O && this->table[1][1] == Elem::O && this->table[2][2] == Elem::Empty) {
-            return { 2, 2 };
-        }
-        if (this->table[0][0] == Elem::O && this->table[1][1] == Elem::Empty && this->table[2][2] == Elem::O) {
-            return { 1, 1 };
-        }
-        if (this->table[0][0] == Elem::Empty && this->table[1][1] == Elem::O && this->table[2][2] == Elem::O) {
-            return { 0, 0 };
-        }
-        if (this->table[0][2] == Elem::O && this->table[1][1] == Elem::O && this->table[2][0] == Elem::Empty) {
-            return { 2, 0 };
-        }
-        if (this->table[0][2] == Elem::O && this->table[1][1] == Elem::Empty && this->table[2][0] == Elem::O) {
-            return { 1, 1 };
-        }
-        if (this->table[0][2] == Elem::Empty && this->table[1][1] == Elem::O && this->table[2][0] == Elem::O) {
-            return { 0, 2 };
-        }
-    }
-    return { -1, -1 };
+
 }
 
 
@@ -377,7 +428,7 @@ void Table::cpuSetValue() {
             else {
                 // ‘ŠèƒŠ[ƒ`‚ª‚ ‚éê‡
                 
-                Reach reach = this->get_reach();
+                Reach reach = this->get_reach(1);
                 if (std::get<0>(reach) == -1) {
                     for (int i = 1; i < 10; i++) {
                         if (this->checkTable(i) == 1) {
