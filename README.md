@@ -1,4 +1,7 @@
 # Tic-tac-toe (三目並べ)
+## Introduce video (紹介動画)
+https://www.youtube.com/watch?v=qboU19cj8qs
+
 ## What is this?
 This is my first C++ practice Tic-tac-toe program.
 
