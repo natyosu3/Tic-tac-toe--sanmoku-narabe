@@ -102,7 +102,6 @@ int main()
 			else if (cmd == 'n') {
 				system("cls");
 				fin = true;
-				// delete &t;
 				cout << "[OK] Thank You For Playing !!" << endl;
 				break;
 			}
