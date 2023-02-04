@@ -254,7 +254,6 @@ void Table::cpuSetValue() {
     int finc = 0;
     static int move_history1, move_history2;
     int random_number;
-    std::cout << count << std::endl;
     srand(time(NULL));
     
     // s“®1‰ñ–Ú-Šï”(1, 3, 5, 7, 9)
