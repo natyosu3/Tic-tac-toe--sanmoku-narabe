@@ -5,14 +5,14 @@ https://www.youtube.com/watch?v=qboU19cj8qs
 ## What is this?
 This is my first C++ practice Tic-tac-toe program.
 
+これはC++の練習を兼ねた三目並べのプログラムです。 (C++を用いた初めての作品)
+
 ## How to download (ダウンロード方法) ※windows only
 https://github.com/natyosu3/Tic-tac-toe--sanmoku-narabe/releases/tag/ver1.0
 <br>
 Go to the release page and download the exe file and run it.
 <br>
 releaseページに移動してexeファイルを実行する。
-
-これはC++の練習を兼ねた三目並べのプログラムです。 (C++を用いた初めての作品)
 
 * ## Structure (仕組み)
     * ### English
