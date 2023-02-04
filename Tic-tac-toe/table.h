@@ -15,7 +15,7 @@ private:
 	std::vector<std::vector<Elem>> table;
 	void playerPos(int);
 	void cpuPos(int);
-	void act_after_third();
+	int act_after_third();
 	Reach get_reach(int);
 	
 public:
@@ -24,5 +24,6 @@ public:
 	void playerSetValue(int);
 	void cpuSetValue();
 	int checkTable(int);
+	int winDecision();
 	Table();
 };

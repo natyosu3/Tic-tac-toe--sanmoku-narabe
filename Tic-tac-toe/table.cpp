@@ -39,7 +39,7 @@ int swith_table(int x, int y) {
 
 Reach Table::get_reach(int select) {
     if (select == 1) {
-        // 横の2つ
+        // 縦の2つ
         for (int i = 0; i < TABLE_SIZE; i++) {
             if (this->table[0][i] == Elem::O && this->table[1][i] == Elem::O && this->table[2][i] == Elem::Empty) {
                 return { 2, i };
@@ -51,7 +51,7 @@ Reach Table::get_reach(int select) {
                 return { 0, i };
             }
         }
-        // 縦の2つ
+        // 横の2つ
         for (int i = 0; i < TABLE_SIZE; i++) {
             if (this->table[i][0] == Elem::O && this->table[i][1] == Elem::O && this->table[i][2] == Elem::Empty) {
                 return { i, 2 };
@@ -210,7 +210,7 @@ void Table::playerSetValue(int pos) {
     this->playerPos(pos);
 }
 
-void Table::act_after_third() {
+int Table::act_after_third() {
     std::cout << "↓ コンピュータの行動 ↓" << std::endl;
     int j = 1;
     int i = 1;
@@ -221,6 +221,7 @@ void Table::act_after_third() {
             Reach reach = this->get_reach(2);
             if (std::get<0>(reach) != -1) {
                 this->cpuPos(swith_table(std::get<0>(reach), std::get<1>(reach)));
+                return 1;
                 break;
             }
             else {
@@ -249,6 +250,7 @@ void Table::act_after_third() {
 
 void Table::cpuSetValue() {
     static int count = 1;
+    int finc = 0;
     static int move_history1, move_history2;
     int random_number;
 
@@ -404,15 +406,19 @@ void Table::cpuSetValue() {
     }
     // 行動3回目
     else if (count == 3) {
-        this->act_after_third();
+        finc = this->act_after_third();
     }
     // 行動4回目
     else if (count == 4) {
-        this->act_after_third();
+        finc = this->act_after_third();
     }
     // 行動5回目
     else if (count == 5) {
         this->act_after_third();
+        count = 0;
+    }
+    if (finc == 1) {
+        count = 0;
     }
     count++;
 }
@@ -467,6 +473,42 @@ int Table::checkTable(int pos) {
     else {
         return -1;
     }
+}
+
+int Table::winDecision() {
+    for (int i = 0; i < TABLE_SIZE; i++) {
+        if (this->table[0][i] == Elem::O && this->table[1][i] == Elem::O && this->table[2][i] == Elem::O) {
+            return 1;
+        }
+    }
+    for (int i = 0; i < TABLE_SIZE; i++) {
+        if (this->table[i][0] == Elem::O && this->table[i][1] == Elem::O && this->table[i][2] == Elem::O) {
+            return 1;
+        }
+    }
+    if (this->table[0][0] == Elem::O && this->table[1][1] == Elem::O && this->table[2][2] == Elem::O) {
+        return 1;
+    }
+    if (this->table[0][2] == Elem::O && this->table[1][1] == Elem::O && this->table[2][0] == Elem::O) {
+        return 1;
+    }
+    for (int i = 0; i < TABLE_SIZE; i++) {
+        if (this->table[0][i] == Elem::X && this->table[1][i] == Elem::X && this->table[2][i] == Elem::X) {
+            return 2;
+        }
+    }
+    for (int i = 0; i < TABLE_SIZE; i++) {
+        if (this->table[i][0] == Elem::X && this->table[i][1] == Elem::X && this->table[i][2] == Elem::X) {
+            return 2;
+        }
+    }
+    if (this->table[0][0] == Elem::X && this->table[1][1] == Elem::X && this->table[2][2] == Elem::X) {
+        return 2;
+    }
+    if (this->table[0][2] == Elem::X && this->table[1][1] == Elem::X && this->table[2][0] == Elem::X) {
+        return 2;
+    }
+    return -1;
 }
 
 void Table::printTable() {
