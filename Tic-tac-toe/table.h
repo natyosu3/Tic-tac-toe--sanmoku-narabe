@@ -15,6 +15,7 @@ private:
 	std::vector<std::vector<Elem>> table;
 	void playerPos(int);
 	void cpuPos(int);
+	void act_after_third();
 	
 public:
 	void resetTable();
