@@ -16,6 +16,7 @@ private:
 	void playerPos(int);
 	void cpuPos(int);
 	void act_after_third();
+	Reach get_reach(int);
 	
 public:
 	void resetTable();
@@ -23,7 +24,5 @@ public:
 	void playerSetValue(int);
 	void cpuSetValue();
 	int checkTable(int);
-	bool check_two_in_a_row();
-	Reach get_reach(int);
 	Table();
 };

@@ -6,6 +6,36 @@
 
 using Reach = std::tuple<int, int>;
 
+int swith_table(int x, int y) {
+    if (x == 0 && y == 0) {
+        return 1;
+    }
+    else if (x == 0 && y == 1) {
+        return 2;
+    }
+    else if (x == 0 && y == 2) {
+        return 3;
+    }
+    else if (x == 1 && y == 0) {
+        return 4;
+    }
+    else if (x == 1 && y == 1) {
+        return 5;
+    }
+    else if (x == 1 && y == 2) {
+        return 6;
+    }
+    else if (x == 2 && y == 0) {
+        return 7;
+    }
+    else if (x == 2 && y == 1) {
+        return 8;
+    }
+    else if (x == 2 && y == 2) {
+        return 9;
+    }
+}
+
 
 Reach Table::get_reach(int select) {
     if (select == 1) {
@@ -104,65 +134,6 @@ Reach Table::get_reach(int select) {
         }
         return { -1, -1 };
     }
-
-}
-
-
-int swith_table(int x, int y) {
-    if (x == 0 && y == 0) {
-        return 1;
-    }
-    else if (x == 0 && y == 1) {
-        return 2;
-    }
-    else if (x == 0 && y == 2) {
-        return 3;
-    }
-    else if (x == 1 && y == 0) {
-        return 4;
-    }
-    else if (x == 1 && y == 1) {
-        return 5;
-    }
-    else if (x == 1 && y == 2) {
-        return 6;
-    }
-    else if (x == 2 && y == 0) {
-        return 7;
-    }
-    else if (x == 2 && y == 1) {
-        return 8;
-    }
-    else if (x == 2 && y == 2) {
-        return 9;
-    }
-}
-
-bool Table::check_two_in_a_row() {
-    // 横の2つ
-    for (int i = 0; i < TABLE_SIZE; i++) {
-        for (int j = 0; j < TABLE_SIZE - 1; j++) {
-            if (this->table[i][j] == this->table[i][j + 1]) {
-                return true;
-            }
-        }
-    }
-    // 縦の2つ
-    for (int i = 0; i < TABLE_SIZE - 1; i++) {
-        for (int j = 0; j < TABLE_SIZE; j++) {
-            if (this->table[i][j] == this->table[i + 1][j]) {
-                return true;
-            }
-        }
-    }
-    // 斜めの2つ
-    for (int i = 0; i < TABLE_SIZE - 1; i++) {
-        if (this->table[i][i] == this->table[i + 1][i + 1] ||
-            this->table[i][TABLE_SIZE - i - 1] == this->table[i + 1][TABLE_SIZE - i - 2]) {
-            return true;
-        }
-    }
-    return false;
 }
 
 void Table::playerPos(int pos) {
@@ -243,6 +214,7 @@ void Table::act_after_third() {
     std::cout << "↓ コンピュータの行動 ↓" << std::endl;
     int j = 1;
     int i = 1;
+    bool flag = false;
 
     for (i = 1; i < 10; i++) {
         if (this->checkTable(i) == 3) {
@@ -262,8 +234,12 @@ void Table::act_after_third() {
                     for (j = 1; j < 10; j++) {
                         if (this->checkTable(j) == 1) {
                             this->cpuPos(j);
+                            flag = true;
                             break;
                         }
+                    }
+                    if (flag) {
+                        break;
                     }
                 }
             }
