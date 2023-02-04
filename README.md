@@ -1,6 +1,7 @@
 # Tic-tac-toe (三目並べ)
 ## What is this?
 This is my first C++ practice Tic-tac-toe program.
+
 これはC++の練習を兼ねた三目並べのプログラムです。 (C++を用いた初めての作品)
 
 * ## Structure (仕組み)
