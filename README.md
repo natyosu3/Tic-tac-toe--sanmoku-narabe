@@ -35,6 +35,8 @@ releaseページに移動してexeファイルを実行する。
     3. 自分の勝てるマスがあれば埋める。プレイヤにリーチがあれば勝利を阻止する、リーチが無ければ空いているマスを上から埋めていく
     4. 3回目の行動と同様
     5. 3回目の行動と同様
+
+
 * ## Development environment (開発環境)
 
     Microsoft Visual Studio 2022 Enterprise
